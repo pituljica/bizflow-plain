@@ -13,7 +13,8 @@
     "semi": ["error", "always"],
     "global-require": 0,
     "comma-dangle": 0,
-    "new-cap": 0
+    "new-cap": 0,
+    "curly": 0
   },
   "settings": {
     "import/ignore": [

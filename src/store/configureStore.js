@@ -1,17 +1,16 @@
-import { createStore, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import rootReducer from '../app/reducer';
+import rootSaga from '../app/saga';
 
-const enhancer = compose(
-  // Middleware you want to use in development:
-  // applyMiddleware(),
-  // Required! Enable Redux DevTools with the monitors you chose
-  // DevTools.instrument()
-);
+const sagaMiddleware = createSagaMiddleware();
 
 export default function configureStore(initialState) {
   // Note: only Redux >= 3.1.0 supports passing enhancer as third argument.
   // See https://github.com/rackt/redux/releases/tag/v3.1.0
-  const store = createStore(rootReducer, initialState, enhancer);
+  const store = createStore(rootReducer, initialState, applyMiddleware(sagaMiddleware));
+
+  sagaMiddleware.run(rootSaga);
 
   // Hot reload reducers (requires Webpack or Browserify HMR to be enabled)
   if (module.hot) {
