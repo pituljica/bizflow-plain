@@ -5,7 +5,7 @@ var webpack = require('webpack'); // eslint-disable-line no-unused-vars
 
 module.exports = {
   context: __dirname + '/src',
-  entry: ['babel-polyfill', './main.js'],
+  entry: ['babel-polyfill', './client/main.js'],
   output: {
     path: path.resolve(__dirname, 'build'),
     publicPath: '/assets/',
